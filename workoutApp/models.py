@@ -36,3 +36,7 @@ class Workout(models.Model):
     caloriesBurn = models.IntegerField()
     workoutDate = models.DateTimeField()
 
+class Goals(models.Model):
+    userId = models.ForeignKey(User, on_delete=models.CASCADE)
+    workoutId = models.ForeignKey(Workout, on_delete=models.CASCADE)
+
