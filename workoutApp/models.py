@@ -13,6 +13,9 @@ class CustomUser(AbstractUser):
     height = models.DecimalField(max_digits=5, decimal_places=2)
     email = models.EmailField(unique=True)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.name = None
 
     def __str__(self):
         return self.username
