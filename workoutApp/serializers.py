@@ -6,7 +6,7 @@ from workoutApp.models import Workout, Goals, Exercise, CustomUser
 class CreateUserSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = CustomUser
-        fields = ['first_name', 'last_name', 'age', 'gender', 'weight', 'height', 'email', 'password']
+        fields = ['first_name', 'last_name', 'username', 'age', 'gender', 'weight', 'height', 'email', 'password']
 
 
 class WorkoutSerializer(serializers.ModelSerializer):

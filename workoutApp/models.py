@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -13,9 +15,19 @@ class CustomUser(AbstractUser):
     height = models.DecimalField(max_digits=5, decimal_places=2)
     email = models.EmailField(unique=True)
 
+    # otp = models.CharField(max_length=6, blank=True, null=True)
+    # otp_sent_at = models.DateTimeField(blank=True, null=True)
+    # is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
+
+    # def generate_otp(self):
+    #     """generate a 6-digit OTP code"""
+    #     otp = random.randint(100000, 999999)
+    #     self.otp = str(otp)
+    #     self.save()
+    #     return self.otp
 
 
 # Define the available workout types
@@ -61,7 +73,8 @@ class Exercise(models.Model):
 
 # Represents a workout session performed by the user
 class Workout(models.Model):
-    user = models.ForeignKey('workoutApp.CustomUser', on_delete=models.CASCADE, related_name='workouts')  # Added ForeignKey to User
+    user = models.ForeignKey('workoutApp.CustomUser', on_delete=models.CASCADE,
+                             related_name='workouts')  # Added ForeignKey to User
     workout_type = models.ForeignKey(WorkoutType, on_delete=models.CASCADE, related_name='workouts')
     duration = models.DurationField()
     calories_burn = models.IntegerField()
