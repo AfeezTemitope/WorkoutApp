@@ -15,9 +15,6 @@ class CustomUser(AbstractUser):
     height = models.DecimalField(max_digits=5, decimal_places=2)
     email = models.EmailField(unique=True)
 
-    # otp = models.CharField(max_length=6, blank=True, null=True)
-    # otp_sent_at = models.DateTimeField(blank=True, null=True)
-    # is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
