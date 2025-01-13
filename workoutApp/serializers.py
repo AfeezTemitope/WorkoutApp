@@ -1,6 +1,8 @@
+from decimal import Decimal
+
 from rest_framework import serializers
 from djoser.serializers import UserCreateSerializer
-from workoutApp.models import Workout, Goals, Exercise, CustomUser
+from workoutApp.models import Workout, Goals, Exercise, CustomUser, WorkoutType
 
 
 class CreateUserSerializer(UserCreateSerializer):
@@ -9,16 +11,28 @@ class CreateUserSerializer(UserCreateSerializer):
         fields = ['first_name', 'last_name', 'age', 'gender', 'weight', 'height', 'email', 'password']
 
 
-class WorkoutSerializer(serializers.ModelSerializer):
+class WorkoutTypeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Workout
-        fields = '__all__'
+        model = WorkoutType
+        fields = ['name', 'workout_types']
+
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    workout_type = WorkoutTypeSerializer()
+    calories_burn = serializers.SerializerMethodField(method_name='calculate_calories_burn')
+
+    class Meta:
+        model = CustomUser
+        fields = ['age', 'weight', 'height']
+
+    def calculate_calories_burn(self, customUser: CustomUser):
+        return Decimal(7.38) * customUser.weight + (607 * customUser.height) - (Decimal(2.31) * customUser.age) + 43
 
 
 class GoalsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Goals
-        fields = '__all__'
+        fields = ['user', 'description', 'target_date']
 
 
 class ExercisesSerializer(serializers.ModelSerializer):

@@ -84,8 +84,8 @@ REST_FRAMEWORK = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = ''
-EMAIL_HOST_USER = ''
+EMAIL_HOST = 'smtp@gmail.com'
+EMAIL_HOST_USER = 'hafeezco75@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('APP_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -102,7 +102,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'light_and_dark',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'Allahisone',
         'HOST': 'localhost',
         'PORT': '3306',
     }
