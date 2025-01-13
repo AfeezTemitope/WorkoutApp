@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'workoutFitApp.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny'
+        'rest_framework.permissions.IsAuthenticated'
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -92,7 +92,6 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {
         'user_create': 'workoutApp.serializers.CreateUserSerializer',
-        'token_create': 'djoser.serializers.TokenCreateSerializer',
     }
 }
 
