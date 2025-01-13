@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'workoutFitApp.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny'
+        'rest_framework.permissions.IsAuthenticated'
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -98,7 +98,6 @@ DJOSER = {
     'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {
         'user_create': 'workoutApp.serializers.CreateUserSerializer',
-        'token_create': 'djoser.serializers.TokenCreateSerializer',
     }
 }
 
@@ -114,17 +113,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 DEFAULT_FROM_EMAIL = 'workoutFitapp@gmail.com'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp@gmail.com'
-EMAIL_HOST_USER = 'hafeezco75@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv('APP_PASSWORD')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'info.semicolon.africa'
-
 
 AUTH_USER_MODEL = 'workoutApp.CustomUser'
 
