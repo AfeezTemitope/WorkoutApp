@@ -13,7 +13,6 @@ from workoutApp.serializers import CreateUserSerializer
 
 # Create your views here.
 
-
 class CustomUserViewSet(ModelViewSet):
     permission_classes = [AllowAny]
     queryset = CustomUser.objects.all()

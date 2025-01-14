@@ -26,7 +26,10 @@ class WorkoutAdmin(admin.ModelAdmin):
     def total_calories_burn_in_a_week(self, calories_burn):
         activity = 'skiing'
         api_url = 'https://api.api-ninjas.com/v1/caloriesburned?activity={}'.format(activity)
-        response = requests.get(api_url, headers=os.getenv({'X-Api-Key': 'API_KEY'}))
+        headers = {
+            'X-api-key': os.getenv('API_KEY')
+        }
+        response = requests.get(api_url, headers=headers)
         if response.status_code == requests.codes.ok:
             print(response.text)
         else:
