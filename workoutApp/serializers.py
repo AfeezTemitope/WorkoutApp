@@ -1,8 +1,9 @@
 from decimal import Decimal
 
-from rest_framework import serializers
 from djoser.serializers import UserCreateSerializer
-from workoutApp.models import Workout, Goals, Exercise, CustomUser, WorkoutType
+from rest_framework import serializers
+
+from workoutApp.models import Goals, Exercise, CustomUser, WorkoutType
 
 
 class CreateUserSerializer(UserCreateSerializer):
